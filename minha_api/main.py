@@ -5,9 +5,22 @@ from .schema import Filme_Model
 
 app = FastAPI()
 
+
 @app.get('/')
+def retornar_root():
+    return{'Uma API feita por': 'Kauan Afonso😎'}
+
+@app.get('/filmes')
 def retornar_todos():
     return filmes
+
+@app.get('/filmes/filtrar/{nome_filme}')
+def pesquisar_filme(nome_filme: str):
+    for i in filmes:
+        if filmes[i]['nome'] == nome_filme:
+            return {"Filme":filmes[i]}
+    return {'erro': 'filme não encontrado'}
+
 
 @app.get('/filmes/{id_filme}')
 def retornar_filme(id_filme:int):
