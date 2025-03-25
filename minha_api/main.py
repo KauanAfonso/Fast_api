@@ -22,3 +22,19 @@ def criar_filme(filme: Filme_Model):
     filmes[nova_posicao] = filme
 
     return {"Filme criado": filme}
+
+@app.put('/filmes/atualizar/{id_filme}')
+async def atualiar_filme(id_filme:int, filme_atualizado: Filme_Model):
+    if id_filme in filmes:
+        filmes[id_filme] = filme_atualizado
+        return{'Filme atualizado com sucesso': filme_atualizado}
+    else:
+        return{'erro': "Filme não encontrado"}
+    
+@app.delete('/filmes/delete/{id_filme}')
+async def excluir_filme(id_filme:int):
+    if id_filme in filmes:
+        del filmes[id_filme]
+        return{'Mensagem','Filme excluido com sucesso'}
+    else:
+        return{'erro': 'filme não encontrado!'}
