@@ -1,10 +1,24 @@
 from fastapi import FastAPI
 from .models import filmes
 from .schema import Filme_Model
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 
+origins = [
+    "http://localhost",  # Permitir localhost
+    "http://127.0.0.1:5500",   # Exemplo: se você estiver rodando um frontend no port 3000
+   
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Permitir origens que você especificou
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos HTTP
+    allow_headers=["*"],  # Permitir todos os cabeçalhos
+)
 
 @app.get('/')
 def retornar_root():

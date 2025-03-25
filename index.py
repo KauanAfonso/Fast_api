@@ -3,6 +3,7 @@ from typing import Union
 from enum import Enum
 from pydantic import BaseModel
 
+
 '''
 parametros da url
 '''
@@ -19,10 +20,9 @@ async def read_item(item_id:int):#tipando o argumento
 
 
 '''
-A ordem importa, caso a func 
-02 fosse declarada primeiro
-a 01 não funcionaria, pois
-ela se concidiriam
+A ordem importa, caso a func 02 fosse 
+declarada primeiro a 01 não funcionaria, 
+pois ela se concidiriam.
 
 '''
 #01
