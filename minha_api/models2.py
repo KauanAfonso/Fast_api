@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base() #Cria uma classe base que será usada para outras classes
@@ -11,7 +11,7 @@ class Movies(Base):
     director = Column(String, index=True)
     year = Column(Integer, index=True)
     gender = Column(String, index=True)
-    actors = Column(String, index =True)
-    ratings = Column(String, index=True)
+    actors= Column(String, index =True)
+    ratings = Column(Float, index=True)
 
     

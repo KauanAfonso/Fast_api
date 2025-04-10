@@ -7,7 +7,7 @@ class Filme_Model(BaseModel):
     year: int
     gender: str
     actors: str
-    ratings: str
+    ratings: float  # Alterando de str para float
 
     class Config:
         orm_mode = True 
