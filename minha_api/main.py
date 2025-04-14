@@ -25,7 +25,7 @@ app.add_middleware(
 )
 
 
-#função para obter uma sessãodo banco de dados
+#função para obter uma sessão do banco de dados
 def get_db():
     db = database.SessionLocal()
     try: 
@@ -55,7 +55,13 @@ def get_movies(db:Session = Depends(get_db)):
     return data
 
 
-@app.get('/filmes/{id}')
-def get_movies_id(id:int, db:Session = Depends(get_db)):
-    data = db.query(Movies).get(id=id)
+@app.get('/filmes/{id}', status_code=status.HTTP_200_OK)
+def get_movies_id(id:int, response:Response, db:Session = Depends(get_db)):
+    try:
+        data = db.query(Movies).get(id)
+        if data is not None:
+            return data
+    except Exception as e:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {'erro': 'filme não encontrado'}
     
