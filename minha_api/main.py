@@ -65,3 +65,21 @@ def get_movies_id(id:int, response:Response, db:Session = Depends(get_db)):
         response.status_code = status.HTTP_404_NOT_FOUND
         return {'erro': 'filme não encontrado'}
     
+
+@app.put('/filmes/{id}', response_model=Filme_Model)
+def update_movie(id:int, movie:Filme_Model, db:Session = Depends(get_db)):
+    data = db.query(Movies).filter(Movies.id == id).first()
+
+    if not data:
+        raise HTTPException(status_code=404, detail='filme não encontrado')
+    
+    data.name = movie.name
+    data.director = movie.director
+    data.year = movie.year
+    data.gender = movie.gender
+    data.actors = movie.actors
+    data.ratings = movie.ratings
+
+    db.commit()
+    db.refresh(data)
+    return data
