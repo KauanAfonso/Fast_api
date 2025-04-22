@@ -1,53 +1,19 @@
-filmes = {
-    1: {'nome': "Vingadores", 'diretor': "Mark", 'ano': 2012, 'genero': "Ação, Ficção Científica", 'atores': ["Robert Downey Jr.", "Chris Hemsworth", "Scarlett Johansson"], 'classificacao': "PG-13"},
-    2: {'nome': "O Rei Leão", 'diretor': "Jon Favreau", 'ano': 2019, 'genero': "Animação, Aventura", 'atores': ["Donald Glover", "Beyoncé", "James Earl Jones"], 'classificacao': "PG"},
-    3: {'nome': "Matrix", 'diretor': "Lana Wachowski, Lilly Wachowski", 'ano': 1999, 'genero': "Ficção Científica, Ação", 'atores': ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"], 'classificacao': "R"},
-    4: {'nome': "Inception", 'diretor': "Christopher Nolan", 'ano': 2010, 'genero': "Ficção Científica, Ação", 'atores': ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"], 'classificacao': "PG-13"},
-    5: {'nome': "O Poderoso Chefão", 'diretor': "Francis Ford Coppola", 'ano': 1972, 'genero': "Crime, Drama", 'atores': ["Marlon Brando", "Al Pacino", "James Caan"], 'classificacao': "R"},
-    6: {'nome': "Titanic", 'diretor': "James Cameron", 'ano': 1997, 'genero': "Drama, Romance", 'atores': ["Leonardo DiCaprio", "Kate Winslet"], 'classificacao': "PG-13"},
-    7: {'nome': "Gladiador", 'diretor': "Ridley Scott", 'ano': 2000, 'genero': "Ação, Drama", 'atores': ["Russell Crowe", "Joaquin Phoenix", "Connie Nielsen"], 'classificacao': "R"},
-    8: {'nome': "Avatar", 'diretor': "James Cameron", 'ano': 2009, 'genero': "Aventura, Ficção Científica", 'atores': ["Sam Worthington", "Zoe Saldana"], 'classificacao': "PG-13"},
-    9: {'nome': "Interstellar", 'diretor': "Christopher Nolan", 'ano': 2014, 'genero': "Ficção Científica, Drama", 'atores': ["Matthew McConaughey", "Anne Hathaway"], 'classificacao': "PG-13"},
-    10: {'nome': "O Senhor dos Anéis: A Sociedade do Anel", 'diretor': "Peter Jackson", 'ano': 2001, 'genero': "Aventura, Fantasia", 'atores': ["Elijah Wood", "Ian McKellen"], 'classificacao': "PG-13"},
-    11: {'nome': "Jurassic Park", 'diretor': "Steven Spielberg", 'ano': 1993, 'genero': "Aventura, Ficção Científica", 'atores': ["Sam Neill", "Laura Dern"], 'classificacao': "PG-13"},
-    12: {'nome': "O Exorcista", 'diretor': "William Friedkin", 'ano': 1973, 'genero': "Terror, Drama", 'atores': ["Linda Blair", "Max von Sydow"], 'classificacao': "R"},
-    13: {'nome': "Star Wars: Episódio IV - Uma Nova Esperança", 'diretor': "George Lucas", 'ano': 1977, 'genero': "Aventura, Ficção Científica", 'atores': ["Mark Hamill", "Harrison Ford", "Carrie Fisher"], 'classificacao': "PG"},
-    14: {'nome': "O Hobbit: Uma Jornada Inesperada", 'diretor': "Peter Jackson", 'ano': 2012, 'genero': "Aventura, Fantasia", 'atores': ["Martin Freeman", "Ian McKellen"], 'classificacao': "PG-13"},
-    15: {'nome': "O Rei Arthur", 'diretor': "Antoine Fuqua", 'ano': 2004, 'genero': "Ação, Aventura", 'atores': ["Clive Owen", "Ioan Gruffudd"], 'classificacao': "PG-13"},
-    16: {'nome': "The Dark Knight", 'diretor': "Christopher Nolan", 'ano': 2008, 'genero': "Ação, Crime", 'atores': ["Christian Bale", "Heath Ledger", "Aaron Eckhart"], 'classificacao': "PG-13"},
-    17: {'nome': "O Cavaleiro das Trevas Ressurge", 'diretor': "Christopher Nolan", 'ano': 2012, 'genero': "Ação, Crime", 'atores': ["Christian Bale", "Tom Hardy", "Anne Hathaway"], 'classificacao': "PG-13"},
-    18: {'nome': "Pulp Fiction", 'diretor': "Quentin Tarantino", 'ano': 1994, 'genero': "Crime, Drama", 'atores': ["John Travolta", "Uma Thurman", "Samuel L. Jackson"], 'classificacao': "R"},
-    19: {'nome': "A Origem", 'diretor': "Christopher Nolan", 'ano': 2010, 'genero': "Ação, Ficção Científica", 'atores': ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"], 'classificacao': "PG-13"},
-    20: {'nome': "Harry Potter e a Pedra Filosofal", 'diretor': "Chris Columbus", 'ano': 2001, 'genero': "Aventura, Fantasia", 'atores': ["Daniel Radcliffe", "Emma Watson", "Rupert Grint"], 'classificacao': "PG"},
-    21: {'nome': "O Grande Lebowski", 'diretor': "Joel Coen, Ethan Coen", 'ano': 1998, 'genero': "Comédia, Crime", 'atores': ["Jeff Bridges", "John Goodman", "Julianne Moore"], 'classificacao': "R"},
-    22: {'nome': "Coringa", 'diretor': "Todd Phillips", 'ano': 2019, 'genero': "Crime, Drama", 'atores': ["Joaquin Phoenix", "Robert De Niro"], 'classificacao': "R"},
-    23: {'nome': "A Viagem de Chihiro", 'diretor': "Hayao Miyazaki", 'ano': 2001, 'genero': "Animação, Aventura", 'atores': ["Rumi Hiiragi", "Miyu Irino"], 'classificacao': "PG"},
-    24: {'nome': "O Lobo de Wall Street", 'diretor': "Martin Scorsese", 'ano': 2013, 'genero': "Comédia, Drama", 'atores': ["Leonardo DiCaprio", "Jonah Hill"], 'classificacao': "R"},
-    25: {'nome': "O Pianista", 'diretor': "Roman Polanski", 'ano': 2002, 'genero': "Drama, História", 'atores': ["Adrien Brody", "Thomas Kretschmann"], 'classificacao': "R"},
-    26: {'nome': "Clube da Luta", 'diretor': "David Fincher", 'ano': 1999, 'genero': "Drama", 'atores': ["Brad Pitt", "Edward Norton", "Helena Bonham Carter"], 'classificacao': "R"},
-    27: {'nome': "O Regresso", 'diretor': "Alejandro G. Iñárritu", 'ano': 2015, 'genero': "Aventura, Drama", 'atores': ["Leonardo DiCaprio", "Tom Hardy"], 'classificacao': "R"},
-    28: {'nome': "Forrest Gump", 'diretor': "Robert Zemeckis", 'ano': 1994, 'genero': "Drama, Romance", 'atores': ["Tom Hanks", "Robin Wright"], 'classificacao': "PG-13"},
-    29: {'nome': "O Quarto de Jack", 'diretor': "Lenny Abrahamson", 'ano': 2015, 'genero': "Drama", 'atores': ["Brie Larson", "Jacob Tremblay"], 'classificacao': "R"},
-    30: {'nome': "Senhor dos Anéis: O Retorno do Rei", 'diretor': "Peter Jackson", 'ano': 2003, 'genero': "Aventura, Fantasia", 'atores': ["Elijah Wood", "Ian McKellen"], 'classificacao': "PG-13"},
-    31: {'nome': "O Grande Gatsby", 'diretor': "Baz Luhrmann", 'ano': 2013, 'genero': "Drama, Romance", 'atores': ["Leonardo DiCaprio", "Carey Mulligan"], 'classificacao': "PG-13"},
-    32: {'nome': "A Rede Social", 'diretor': "David Fincher", 'ano': 2010, 'genero': "Biografia, Drama", 'atores': ["Jesse Eisenberg", "Andrew Garfield"], 'classificacao': "PG-13"},
-    33: {'nome': "O Lado Bom da Vida", 'diretor': "David O. Russell", 'ano': 2012, 'genero': "Comédia, Drama", 'atores': ["Bradley Cooper", "Jennifer Lawrence"], 'classificacao': "R"},
-    34: {'nome': "Django Livre", 'diretor': "Quentin Tarantino", 'ano': 2012, 'genero': "Ação, Drama", 'atores': ["Jamie Foxx", "Christoph Waltz", "Leonardo DiCaprio"], 'classificacao': "R"},
-    35: {'nome': "A Forma da Água", 'diretor': "Guillermo del Toro", 'ano': 2017, 'genero': "Drama, Fantasia", 'atores': ["Sally Hawkins", "Michael Shannon"], 'classificacao': "R"},
-    36: {'nome': "Mad Max: Estrada da Fúria", 'diretor': "George Miller", 'ano': 2015, 'genero': "Ação, Aventura", 'atores': ["Tom Hardy", "Charlize Theron"], 'classificacao': "R"},
-    37: {'nome': "O Silêncio dos Inocentes", 'diretor': "Jonathan Demme", 'ano': 1991, 'genero': "Crime, Drama", 'atores': ["Jodie Foster", "Anthony Hopkins"], 'classificacao': "R"},
-    38: {'nome': "O Massacre da Serra Elétrica", 'diretor': "Tobe Hooper", 'ano': 1974, 'genero': "Terror", 'atores': ["Marilyn Burns", "Allen Danziger"], 'classificacao': "R"},
-    39: {'nome': "Alien", 'diretor': "Ridley Scott", 'ano': 1979, 'genero': "Ficção Científica, Terror", 'atores': ["Sigourney Weaver", "Tom Skerritt"], 'classificacao': "R"},
-    40: {'nome': "A Noite dos Mortos-Vivos", 'diretor': "George A. Romero", 'ano': 1968, 'genero': "Terror", 'atores': ["Duane Jones", "Judith O'Dea"], 'classificacao': "R"},
-    41: {'nome': "A Bruxa", 'diretor': "Robert Eggers", 'ano': 2015, 'genero': "Terror, Drama", 'atores': ["Anya Taylor-Joy", "Ralph Ineson"], 'classificacao': "R"},
-    42: {'nome': "O Orfanato", 'diretor': "J.A. Bayona", 'ano': 2007, 'genero': "Terror, Drama", 'atores': ["Belén Rueda", "Fernando Cayo"], 'classificacao': "R"},
-    43: {'nome': "O Labirinto do Fauno", 'diretor': "Guillermo del Toro", 'ano': 2006, 'genero': "Drama, Fantasia", 'atores': ["Ivana Baquero", "Sergi López"], 'classificacao': "R"},
-    44: {'nome': "O Sexto Sentido", 'diretor': "M. Night Shyamalan", 'ano': 1999, 'genero': "Drama, Terror", 'atores': ["Bruce Willis", "Haley Joel Osment"], 'classificacao': "PG-13"},
-    45: {'nome': "O Procurado", 'diretor': "Timur Bekmambetov", 'ano': 2008, 'genero': "Ação, Crime", 'atores': ["Angelina Jolie", "James McAvoy"], 'classificacao': "R"},
-    46: {'nome': "O Exterminador do Futuro", 'diretor': "James Cameron", 'ano': 1984, 'genero': "Ação, Ficção Científica", 'atores': ["Arnold Schwarzenegger", "Linda Hamilton"], 'classificacao': "R"},
-    47: {'nome': "No Country for Old Men", 'diretor': "Joel Coen, Ethan Coen", 'ano': 2007, 'genero': "Crime, Drama", 'atores': ["Tommy Lee Jones", "Javier Bardem"], 'classificacao': "R"},
-    48: {'nome': "Her", 'diretor': "Spike Jonze", 'ano': 2013, 'genero': "Drama, Romance", 'atores': ["Joaquin Phoenix", "Scarlett Johansson"], 'classificacao': "R"},
-    49: {'nome': "Ex Machina", 'diretor': "Alex Garland", 'ano': 2014, 'genero': "Ficção Científica, Drama", 'atores': ["Alicia Vikander", "Domhnall Gleeson"], 'classificacao': "R"},
-    50: {'nome': "Donnie Darko", 'diretor': "Richard Kelly", 'ano': 2001, 'genero': "Drama, Mistério", 'atores': ["Jake Gyllenhaal", "Jena Malone"], 'classificacao': "R"}
-}
+from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 
+Base = declarative_base() #Cria uma classe base que será herdada para outras classes
+
+
+#Tabela de movies 
+class Movies(Base):
+    __tablename__ = 'movies'
+
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    name =Column(String, index=True)
+    director = Column(String, index=True)
+    year = Column(Integer, index=True)
+    gender = Column(String, index=True)
+    actors= Column(String, index =True)
+    ratings = Column(Float, index=True)
+
+    

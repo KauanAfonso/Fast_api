@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Response, status, Depends, HTTPException
-from .models2 import Movies
+from .models import Movies
 from sqlalchemy.orm import Session
 from .schema import Filme_Model
-from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from . import database
@@ -41,37 +40,50 @@ def retornar_root():
 
 
 #Criar um filme
-@app.post('/filmes/', response_model=Filme_Model)
-def create_movie(movie: Filme_Model, db: Session = Depends(get_db)): 
-    db_movie = Movies(name=movie.name, director=movie.director, year=movie.year, gender=movie.gender, actors=movie.actors, ratings=movie.ratings)
-    db.add(db_movie)
-    db.commit()
-    db.refresh(db_movie)
-    return db_movie
-
+@app.post('/filmes/', response_model=Filme_Model , status_code=201)
+def create_movie(movie: Filme_Model, response:Response, db: Session = Depends(get_db)):
+    #tentar pegar todos os dados da api, adicionar ao banco salvar e recarrega-lo
+    try:
+        db_movie = Movies(name=movie.name, director=movie.director, year=movie.year, gender=movie.gender, actors=movie.actors, ratings=movie.ratings)
+        db.add(db_movie)
+        db.commit()
+        db.refresh(db_movie)
+        return db_movie
+    except:
+        response.status_code = status.HTTP_400_BAD_REQUEST
+        return {'error':'Invalid datas'}
+        
+#Pegando todos os flmes
 @app.get('/filmes/')
 def get_movies(db:Session = Depends(get_db)):
-    data = db.query(Movies).all()#Pegando tudo
+    data = db.query(Movies).all()
     return data
 
 
+#Obtendo um filme
 @app.get('/filmes/{id}', status_code=status.HTTP_200_OK)
 def get_movies_id(id:int, response:Response, db:Session = Depends(get_db)):
     try:
         data = db.query(Movies).get(id)
-        if data is not None:
-            return data
+        if not data:
+            response.status_code = status.HTTP_404_NOT_FOUND
+            raise HTTPException(status_code=404, detail='movie not found') #lançando um erro de http -> pois somente com try_catch não estava retornando o status correto
+            
+        return data
     except Exception as e:
-        response.status_code = status.HTTP_404_NOT_FOUND
-        return {'erro': 'filme não encontrado'}
+        return {'erro': e}
     
 
-@app.put('/filmes/{id}', response_model=Filme_Model)
-def update_movie(id:int, movie:Filme_Model, db:Session = Depends(get_db)):
-    data = db.query(Movies).filter(Movies.id == id).first()
+#atualizando um filme
+@app.put('/filmes/{id}', response_model=Filme_Model, status_code=status.HTTP_200_OK)
+def update_movie(id:int, response:Response, movie:Filme_Model, db:Session = Depends(get_db)):
 
+
+    data = db.query(Movies).get(id) #obtendo o filme
+      
     if not data:
-        raise HTTPException(status_code=404, detail='filme não encontrado')
+        # Se não encontrar o filme, levanta um erro 404
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Movie not found")
     
     data.name = movie.name
     data.director = movie.director
@@ -83,3 +95,16 @@ def update_movie(id:int, movie:Filme_Model, db:Session = Depends(get_db)):
     db.commit()
     db.refresh(data)
     return data
+
+
+#Deletando um movie
+@app.delete('/filmes/{id}', status_code=status.HTTP_200_OK)
+def delete_movie(id:int , response:Response, db:Session = Depends(get_db)):
+    try:
+        movie_selected = db.query(Movies).get(id) #obtendo o movie
+        db.delete(movie_selected) #deletando ele 
+        db.commit()
+        return{f"Deletado com sucesso: {movie_selected}"}#Retornando o nome
+    except:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return{'error': 'movie not found!'} #tratando caso não encontre
